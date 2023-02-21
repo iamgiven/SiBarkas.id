@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=Monda:wght@400;700&family=Montserrat:wght@400;500&family=Russo+One&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    border: none;
+    background: none;
+}
+
+body {
+    font-family: montserrat;
+    padding-bottom: 50px;
+}
+
+@media (min-width: 1024px) {
+    .hero-section {
+        width: 100%;
+    }
+    
+    .hero-section > div:nth-child(1) {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-top: 25px;
+    }
+    
+    nav {
+        width: 85%;
+        height: 75px;
+        background: #ffffff;
+        position: fixed;
+        border-radius: 5px;
+        padding: 0px 10px;
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 5;
+    }
+    
+    .div-logo {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 175px;
+        background: #ffffff;
+        padding: 0px 10px;
+    }
+    
+    .div-logo img {
+        width: 40px;
+    }
+    
+    .div-logo h1 {
+        font-size: 22px;
+    }
+    
+    .div-list {
+        width: 600px;
+        height: 100%;
+        padding: 0px 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .div-list ul {
+        width: 550px;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        padding: 0px 10px;
+    }
+
+    .div-list ul > a {
+        height: 100%;
+        width: 100px;
+        color: #111111;
+        font-weight: 450;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0px 10px;
+    }
+
+    .div-list ul > a:hover {
+        background: #eeeeee;
+    }
+    
+    .search-button {
+        width: 50px;
+        height: 50px;
+        cursor: pointer;
+        border-radius: 100%;
+    }
+    
+    .search-button:hover {
+        background: #eeeeee;
+    }
+    
+    .search-button svg {
+        width: 28px;
+        background: none;
+    }
+
+    .item-section > div:nth-child(1) {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .div-item {
+        width: 85%;
+        height: 400px;
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+        margin-top: 250px;
+    }
+    
+}
+
+@media (max-width: 1024px) {
+    body {
+        display: none;
+    }
+}
+
