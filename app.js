@@ -14,32 +14,27 @@ const session = require('express-session')
 const methodOverride = require('method-override')
 
 
-const users = [
-  {
-    id: '1679856693439',
-    name: 'given',
-    email: 'givendra03@gmail.com',
-    password: '$2b$10$swZ8n2N6FAh9MrxkTiMEweRCORLRbkkoyQ..xLETo9Ra49lZI4muG'
-  }
-]
+const MongoClient = require('mongodb').MongoClient;
+const url = 'mongodb://localhost:27017/sibarkasid';
 
-
-mongoose.connect('mongodb://localhost:27017/sibarkasid', {useNewUrlParser: true, useUnifiedTopology: true})
-const db = mongoose.connection
-
-db.on('error', (err) => {
-  console.log(err)
-})
-
-db.once('open', () => {
-  console.log('Database Connection Established!')
-})
 
 const initializePassport = require('./passport-config');
 initializePassport(
   passport,
-  (email) => users.find((user) => user.email === email),
-  (id) => users.find((user) => user.id === id)
+  async (email) => {
+    const client = await MongoClient.connect(url, { useNewUrlParser: true });
+    const db = client.db('sibarkasid');
+    const user = await db.collection('users').findOne({ email: email });
+    client.close();
+    return user;
+  },
+  async (id) => {
+    const client = await MongoClient.connect(url, { useNewUrlParser: true });
+    const db = client.db('sibarkasid');
+    const user = await db.collection('users').findOne({ _id: new ObjectId(id) });
+    client.close();
+    return user;
+  }
 );
 
 app.use(bodyParser.urlencoded({extended: true}))
@@ -89,17 +84,21 @@ app.post('/signup', checkNotAuthenticated, async (req, res) => {
   try {
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
 
-    users.push({
-      id: Date.now().toString(),
+    const client = await MongoClient.connect(url, { useNewUrlParser: true });
+    const db = client.db('sibarkasid');
+
+    await db.collection('users').insertOne({
       name: req.body.name,
       email: req.body.email,
       password: hashedPassword,
     });
+
+    client.close();
+
     res.redirect('/login');
   } catch {
     res.redirect('/signup');
   }
-  console.log(users);
 });
 
 app.delete('/logout', (req, res, next) => {
@@ -122,7 +121,7 @@ app.get('/products', (req, res) => {
 })
 
 
-app.get('/saved', (req, res) => {
+app.get('/saved', checkAuthenticated, (req, res) => {
   res.render('pages/saved');
 })
 
