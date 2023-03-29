@@ -1,78 +1,57 @@
-@import url('https://fonts.googleapis.com/css2?family=Monda:wght@400;700&family=Montserrat:wght@400;500&family=Russo+One&display=swap');
-
-* {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    text-decoration: none;
-    border: none;
-    background: none;
-}
 
 body {
     font-family: montserrat;
 }
 
-@media (min-width: 1024px) {
-    .home-section {
-        width: 100%;
-        height: 100vh;
-        position: absolute;
-        top: 0;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-
-    .div-home-1 {
-        height: 30%;
-        margin: 0 0 0 150px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-    }
-
-    .div-home-1 > p:nth-child(1) {
-        font-size: 40px;
-        font-weight: 800;
-    }
-
-    .div-home-1 > p:nth-child(2) {
-        font-size: 25px;
-        font-weight: 600;
-        color: #D97501;
-    }
-
-    .div-home-1 span > p {
-        font-weight: 500;
-        color: #555555;
-    }
-
-    .div-home-1 button {
-        width: 150px;
-        height: 40px;
-        background: #18191A;
-        color: white;
-        border-radius: 25px;
-        cursor: pointer;
-    }
-
-    .div-home-1 button:hover {
-        color: yellow;
-    }
-
-    .div-home-2 {
-        width: 40%;
-        height: 60%;
-        margin: 0 150px 0 0;
-        position: relative;
-    }
+.home-section {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
+.div-home-1 {
+    height: 30%;
+    margin: 0 0 0 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
 
-@media (max-width: 1024px) {
-    body {
-        display: none;
-    }
+.div-home-1 > p:nth-child(1) {
+    font-size: 40px;
+    font-weight: 800;
+}
+
+.div-home-1 > p:nth-child(2) {
+    font-size: 25px;
+    font-weight: 600;
+    color: #D97501;
+}
+
+.div-home-1 span > p {
+    font-weight: 500;
+    color: #555555;
+}
+
+.div-home-1 button {
+    width: 150px;
+    height: 40px;
+    background: #18191A;
+    color: white;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+.div-home-1 button:hover {
+    color: yellow;
+}
+
+.div-home-2 {
+    width: 40%;
+    height: 60%;
+    margin: 0 150px 0 0;
+    position: relative;
 }
 

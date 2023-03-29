@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User</title>
+    <link rel="stylesheet" href="styles/navbar.css">
+    <link rel="stylesheet" href="styles/user.css">
+    <link rel="stylesheet" href="styles/footer.css">
+</head>
+<body>
+
+<%- include('../layouts/navbar') %>
+
+
+<section class="user-section">
+    <div class="user-info">
+        <div>
+            <div>
+                <div class="user-info-1">
+                    <div class="user-info-profile">
+                        <div>
+                            <div>
+                                <img src="img/default-profile.png" alt="">
+                            </div>
+                            <div>
+                                <p>@<%= name %></p>
+                            </div>
+                        </div>
+                        <div>
+                            <button onclick="window.location.href='http://localhost:3000/upload'">Upload barang</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="user-info-2">
+                    <div class="user-info-data">
+                        <div>
+                            <label for="name">Nama Lengkap</label>
+                            <input type="text" value="Givendra Dipanegara" disabled>
+                        </div>
+                        <span></span>
+                        <div>
+                            <label for="email">Email</label>
+                            <input type="email" value="<%= email %>" disabled>
+                        </div>
+                        <span></span>
+                        <div>
+                            <label for="name">No. HP</label>
+                            <input type="text" value="08123456789" disabled>
+                        </div>
+                        <span></span>
+                        <div>
+                            <label for="name">Alamat</label>
+                            <input type="text" value="Jalan semawur no. 69 negeri antah berantah" disabled>
+                        </div>
+                        <div>
+                            <button>Edit</button>
+                            <button>Save</button>
+                        </div>
+                    </div>
+                    <div class="user-info-products">
+                        
+                    </div>
+                </div>
+            </div>
+            <div>
+                <form class="logout-button" action="/logout?_method=DELETE" method="POST">
+                    <button type="submit">Log Out</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<%- include('../layouts/footer') %>
+
+</body>
+</html>
