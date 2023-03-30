@@ -20,102 +20,20 @@
 
             <!-- Baris Produk Start -->
             <div class="row-product">
-                <div class="product-items">
-                    <img src="https://source.unsplash.com/800x600/?gaming-keyboard" alt="">
-                    <div class="product-info">
-                        <div>
-                            <p>Gaming Keyboard</p>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla, consectetur.</p>
-                        </div>
-                        <div>
-                            <p>Rp350.000,-</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-items">
-                    <img src="https://source.unsplash.com/800x600/?gaming-mouse" alt="">
-                    <div class="product-info">
-                        <div>
-                            <p>Gaming Mouse</p>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla, consectetur.</p>
-                        </div>
-                        <div>
-                            <p>Rp100.000,-</p>
+                <% products.forEach(function(product) { %>
+                    <div class="product-items">
+                        <img src="" alt="">
+                        <div class="product-info">
+                            <div>
+                                <p><%= product.nama_barang %></p>
+                                <p><%= product.deskripsi_barang %></p>
+                            </div>
+                            <div>
+                                <p>Rp<%= product.harga_barang %>,-</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="product-items">
-                    <img src="https://source.unsplash.com/800x600/?gaming-chair" alt="">
-                    <div class="product-info">
-                        <div>
-                            <p>Kursi Gaming</p>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla, consectetur.</p>
-                        </div>
-                        <div>
-                            <p>Rp1.500.000,-</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-items">
-                    <img src="https://source.unsplash.com/800x600/?gaming-pc" alt="">
-                    <div class="product-info">
-                        <div>
-                            <p>PC Gaming</p>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla, consectetur.</p>
-                        </div>
-                        <div>
-                            <p>Rp12.000.000,-</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-items">
-                    <img src="https://source.unsplash.com/800x600/?gaming-keyboard" alt="">
-                    <div class="product-info">
-                        <div>
-                            <p>Gaming Keyboard</p>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla, consectetur.</p>
-                        </div>
-                        <div>
-                            <p>Rp350.000,-</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-items">
-                    <img src="https://source.unsplash.com/800x600/?gaming-mouse" alt="">
-                    <div class="product-info">
-                        <div>
-                            <p>Gaming Mouse</p>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla, consectetur.</p>
-                        </div>
-                        <div>
-                            <p>Rp100.000,-</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-items">
-                    <img src="https://source.unsplash.com/800x600/?gaming-chair" alt="">
-                    <div class="product-info">
-                        <div>
-                            <p>Kursi Gaming</p>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla, consectetur.</p>
-                        </div>
-                        <div>
-                            <p>Rp1.500.000,-</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-items">
-                    <img src="https://source.unsplash.com/800x600/?gaming-pc" alt="">
-                    <div class="product-info">
-                        <div>
-                            <p>PC Gaming</p>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla, consectetur.</p>
-                        </div>
-                        <div>
-                            <p>Rp12.000.000,-</p>
-                        </div>
-                    </div>
-                </div>
+                <% }); %>
             </div>
             <!-- Baris Produk End -->
 

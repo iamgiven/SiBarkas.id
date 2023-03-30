@@ -13,7 +13,7 @@ const flash = require('express-flash')
 const session = require('express-session')
 const methodOverride = require('method-override')
 
-
+const retrieveProducts = require('./retrieve-product.js');
 const MongoClient = require('mongodb').MongoClient;
 const url = 'mongodb://localhost:27017/sibarkasid';
 
@@ -36,6 +36,7 @@ initializePassport(
     return user;
   }
 );
+
 
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
@@ -116,9 +117,16 @@ app.get('/home', (req, res) => {
 })
 
 
-app.get('/products', (req, res) => {
-  res.render('pages/products');
-})
+app.get('/products', async (req, res) => {
+  try {
+    const products = await retrieveProducts();
+    res.render('pages/products', { products });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send('Internal server error');
+  }
+});
+
 
 
 app.get('/saved', checkAuthenticated, (req, res) => {
