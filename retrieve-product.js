@@ -1,24 +1,21 @@
+// Import paket MongoDB
 const MongoClient = require('mongodb').MongoClient;
-const url = 'mongodb://localhost:27017/sibarkasid';
+
+// Konfigurasi koneksi ke basis data MongoDB
+const url = 'mongodb://localhost:27017';
 const dbName = 'sibarkasid';
 
-function retrieveProducts() {
-  return new Promise((resolve, reject) => {
-    MongoClient.connect(url, function(err, client) {
-      if (err) reject(err);
-
-      const db = client.db(dbName);
-      console.log('Database connected successfully');
-
-      db.collection('products').find({}).toArray(function(err, products) {
-        if (err) reject(err);
-
-        client.close();
-
-        resolve(products);
-      });
-    });
-  });
+async function retrieveProducts() {
+  try {
+    const client = await MongoClient.connect(url, { useUnifiedTopology: true });
+    const db = client.db("sibarkasid");
+    const products = await db.collection("products").find().toArray();
+    console.log(products); // menampilkan produk pada konsol
+    client.close();
+    return products;
+  } catch (error) {
+    throw new Error(`Error retrieving products: ${error}`);
+  }
 }
 
 module.exports = retrieveProducts;

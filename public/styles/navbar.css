@@ -155,7 +155,7 @@ nav {
     align-items: center;
 }
 
-.search-section div input {
+.search-section > form input {
     width: 80%;
     height: 80%;
     margin: 0 0 0 30px;

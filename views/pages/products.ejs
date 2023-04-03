@@ -19,22 +19,26 @@
         <div class="div-product-section">
 
             <!-- Baris Produk Start -->
+            <% if (products && products.length) { %>
             <div class="row-product">
-                <% products.forEach(function(product) { %>
+                <% for(let i = 0; i < products.length; i++) { %>
                     <div class="product-items">
                         <img src="" alt="">
                         <div class="product-info">
                             <div>
-                                <p><%= product.nama_barang %></p>
-                                <p><%= product.deskripsi_barang %></p>
+                                <p><%= products[i].nama_barang %></p>
+                                <p><%= products[i].deskripsi_barang %></p>
                             </div>
                             <div>
-                                <p>Rp<%= product.harga_barang %>,-</p>
+                                <p>Rp<%= products[i].harga_barang.toLocaleString('id-ID') %>,-</p>
                             </div>
                         </div>
                     </div>
-                <% }); %>
+                <% } %>
             </div>
+            <% } else { %>
+                <p>No products found</p>
+            <% } %>
             <!-- Baris Produk End -->
 
         </div>

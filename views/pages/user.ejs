@@ -37,7 +37,7 @@
                     <div class="user-info-data">
                         <div>
                             <label for="name">Nama Lengkap</label>
-                            <input type="text" value="Givendra Dipanegara" disabled>
+                            <input type="text" value="<%= fullName %>" disabled>
                         </div>
                         <span></span>
                         <div>
@@ -47,12 +47,12 @@
                         <span></span>
                         <div>
                             <label for="name">No. HP</label>
-                            <input type="text" value="08123456789" disabled>
+                            <input type="text" value="<%= phone %>" disabled>
                         </div>
                         <span></span>
                         <div>
                             <label for="name">Alamat</label>
-                            <input type="text" value="Jalan semawur no. 69 negeri antah berantah" disabled>
+                            <input type="text" value="<%= address %>" disabled>
                         </div>
                         <div>
                             <button>Edit</button>
@@ -62,12 +62,12 @@
                     <div class="user-info-products">
                         
                     </div>
+                    <div>
+                        <form class="logout-button" action="/logout?_method=DELETE" method="POST">
+                            <button type="submit">Log Out</button>
+                        </form>
+                    </div>
                 </div>
-            </div>
-            <div>
-                <form class="logout-button" action="/logout?_method=DELETE" method="POST">
-                    <button type="submit">Log Out</button>
-                </form>
             </div>
         </div>
     </div>

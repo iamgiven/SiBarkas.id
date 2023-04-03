@@ -13,10 +13,9 @@ const flash = require('express-flash')
 const session = require('express-session')
 const methodOverride = require('method-override')
 
-const retrieveProducts = require('./retrieve-product.js');
 const MongoClient = require('mongodb').MongoClient;
 const url = 'mongodb://localhost:27017/sibarkasid';
-
+const retrieveProducts = require('./retrieve-product.js');
 
 const initializePassport = require('./passport-config');
 initializePassport(
@@ -56,10 +55,23 @@ app.use(methodOverride('_method'));
 
 
 
+app.get('/products', async (req, res) => {
+  try {
+    const products = await retrieveProducts();
+    res.render('pages/products', { products });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send('Internal server error');
+  }
+});
+
 app.get('/user', checkAuthenticated, (req, res) => {
-  res.render('pages/user.ejs', {
+  res.render('pages/user', {
      name: req.user.name,
-     email: req.user.email
+     email: req.user.email,
+     fullName: req.user.fullName,
+     phone: req.user.phone,
+     address: req.user.address
     });
 });
 
@@ -116,16 +128,6 @@ app.get('/home', (req, res) => {
   res.render('pages/home');
 })
 
-
-app.get('/products', async (req, res) => {
-  try {
-    const products = await retrieveProducts();
-    res.render('pages/products', { products });
-  } catch (error) {
-    console.log(error);
-    res.status(500).send('Internal server error');
-  }
-});
 
 
 
