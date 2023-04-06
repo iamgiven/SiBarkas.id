@@ -37,26 +37,26 @@
                     <div class="user-info-data">
                         <div>
                             <label for="name">Nama Lengkap</label>
-                            <input type="text" value="<%= fullName %>" disabled>
+                            <input type="text" id="name" name="name" value="<%= fullName %>" disabled>
                         </div>
                         <span></span>
                         <div>
                             <label for="email">Email</label>
-                            <input type="email" value="<%= email %>" disabled>
+                            <input type="email" id="email" name="email" value="<%= email %>" disabled>
                         </div>
                         <span></span>
                         <div>
                             <label for="name">No. HP</label>
-                            <input type="text" value="<%= phone %>" disabled>
+                            <input type="tel" id="phone" name="phone" value="<%= phone %>" disabled>
                         </div>
                         <span></span>
                         <div>
                             <label for="name">Alamat</label>
-                            <input type="text" value="<%= address %>" disabled>
+                            <input type="text" id="address" name="address" value="<%= address %>" disabled>
                         </div>
                         <div>
-                            <button>Edit</button>
-                            <button>Save</button>
+                            <button id="edit-button">Edit</button>
+                            <button id="save-button">Save</button>
                         </div>
                     </div>
                     <div class="user-info-products">
@@ -75,6 +75,6 @@
 
 
 <%- include('../layouts/footer') %>
-
+<script src="script/editUser.js"></script>
 </body>
 </html>

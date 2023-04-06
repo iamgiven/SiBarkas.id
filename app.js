@@ -17,6 +17,7 @@ const MongoClient = require('mongodb').MongoClient;
 const url = 'mongodb://localhost:27017/sibarkasid';
 const retrieveProducts = require('./retrieve-product.js');
 
+
 const initializePassport = require('./passport-config');
 initializePassport(
   passport,
@@ -54,11 +55,11 @@ app.use(passport.session());
 app.use(methodOverride('_method'));
 
 
-
 app.get('/products', async (req, res) => {
+  const keyword = req.query.keyword || '';
   try {
-    const products = await retrieveProducts();
-    res.render('pages/products', { products });
+    const products = await retrieveProducts(keyword);
+    res.render('pages/products', { products, keyword });
   } catch (error) {
     console.log(error);
     res.status(500).send('Internal server error');

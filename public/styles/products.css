@@ -7,18 +7,20 @@
 }
 
 .div-product-section {
-    width: 80%;
+    width: 1200px;
     margin: 200px 0 50px 0;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     background: #ffffff;
 }
 
 .row-product {
-    width: 100%;
+    width: 1200px;
     margin: 40px 0;
+    padding: 0 40px;
+    gap: 40px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: flex-start;
 }
 
 .product-items {
@@ -90,5 +92,11 @@
     font-weight: 500;
 }
 
-
+.no-product {
+    height: 400px;
+    width: 100%;
+    padding: 20px 0 0 0;
+    font-size: 20px;
+    text-align: center;
+}
 
