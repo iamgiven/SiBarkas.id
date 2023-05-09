@@ -76,6 +76,10 @@ app.get('/user', checkAuthenticated, (req, res) => {
     });
 });
 
+app.get('/user/edit', checkAuthenticated, (req, res) => {
+  res.render('user/edit.ejs');
+})
+
 app.get('/login', checkNotAuthenticated, (req, res) => {
   res.render('user/login.ejs');
 });
@@ -86,7 +90,7 @@ app.post(
   passport.authenticate('local', {
     successRedirect: '/user',
     failureRedirect: '/login',
-    failureFlash: true,
+    failureFlash: true
   })
 );
 
@@ -115,30 +119,25 @@ app.post('/signup', checkNotAuthenticated, async (req, res) => {
   }
 });
 
-app.delete('/logout', (req, res, next) => {
-  req.logout(function (err) {
-    if (err) {
-      return next(err);
-    }
+app.get('/logout', (req, res) => {
+  req.logout(() => {
+    req.session.destroy();
     res.redirect('/login');
   });
 });
+
 
 
 app.get('/home', (req, res) => {
   res.render('pages/home');
 })
 
-
-
-
 app.get('/saved', checkAuthenticated, (req, res) => {
   res.render('pages/saved');
 })
 
-
-app.get('/upload', checkAuthenticated, (req, res) => {
-  res.render('pages/upload');
+app.get('/user/upload', checkAuthenticated, (req, res) => {
+  res.render('user/upload');
 })
 
 
@@ -146,7 +145,6 @@ function checkAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
     return next();
   }
-
   res.redirect('/login');
 }
 
@@ -156,6 +154,8 @@ function checkNotAuthenticated(req, res, next) {
   }
   next();
 }
+
+
 
 
 // untuk mengakses folder "public"

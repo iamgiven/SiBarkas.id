@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>User</title>
     <link rel="stylesheet" href="styles/navbar.css">
     <link rel="stylesheet" href="styles/user.css">
@@ -29,7 +32,7 @@
                             </div>
                         </div>
                         <div>
-                            <button onclick="window.location.href='http://localhost:3000/upload'">Upload barang</button>
+                            <button onclick="window.location.href='http://localhost:3000/user/upload'">Upload barang</button>
                         </div>
                     </div>
                 </div>
@@ -37,33 +40,41 @@
                     <div class="user-info-data">
                         <div>
                             <label for="name">Nama Lengkap</label>
-                            <input type="text" id="name" name="name" value="<%= fullName %>" disabled>
+                            <input class="user-info" type="text" id="name" name="name" value="<%= fullName %>" disabled>
                         </div>
                         <span></span>
                         <div>
                             <label for="email">Email</label>
-                            <input type="email" id="email" name="email" value="<%= email %>" disabled>
+                            <input class="user-info" type="email" id="email" name="email" value="<%= email %>" disabled>
                         </div>
                         <span></span>
                         <div>
                             <label for="name">No. HP</label>
-                            <input type="tel" id="phone" name="phone" value="<%= phone %>" disabled>
+                            <input class="user-info" type="tel" id="phone" name="phone" value="<%= phone %>" disabled>
                         </div>
                         <span></span>
                         <div>
                             <label for="name">Alamat</label>
-                            <input type="text" id="address" name="address" value="<%= address %>" disabled>
+                            <input class="user-info" type="text" id="address" name="address" value="<%= address %>" disabled>
                         </div>
                         <div>
-                            <button id="edit-button">Edit</button>
-                            <button id="save-button">Save</button>
+                            <button id="edit-button" onclick="window.location.href='http://localhost:3000/user/edit'">Edit</button>
                         </div>
                     </div>
                     <div class="user-info-products">
-                        
+                        <div class="sold-title-products">
+                            <p>Barang yang dijual</p>
+                        </div>
+                        <div class="sold-products-list">
+                            <div class="sold-info-products">
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                            </div>
+                        </div>
                     </div>
                     <div>
-                        <form class="logout-button" action="/logout?_method=DELETE" method="POST">
+                        <form class="logout-button" action="/logout" method="GET">
                             <button type="submit">Log Out</button>
                         </form>
                     </div>

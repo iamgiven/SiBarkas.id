@@ -3,7 +3,6 @@ const MongoClient = require('mongodb').MongoClient;
 
 // Konfigurasi koneksi ke basis data MongoDB
 const url = 'mongodb://localhost:27017';
-const dbName = 'sibarkasid';
 
 async function retrieveProducts(keyword = '') {
   try {

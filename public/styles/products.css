@@ -43,7 +43,7 @@
 .product-items img {
     height: 50%;
     width: 100%;
-    object-fit: center;
+    object-fit: cover;
 }
 
 .product-items div {
