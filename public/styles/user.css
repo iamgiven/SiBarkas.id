@@ -76,7 +76,7 @@
 }
 
 .user-info-profile > div:nth-child(1) > div:nth-child(2) p {
-    color: #888;
+    color: #000;
 }
 
 .user-info-profile > div:nth-child(2) {
@@ -197,8 +197,9 @@
 }
 
 .sold-title-products p {
-    font-size: 18px;
-    font-weight: 600;
+    font-size: 17px;
+    font-weight: 500;
+    font-family: 'Lato', sans-serif;
 }
 
 .sold-products-list {

@@ -16,6 +16,7 @@ const methodOverride = require('method-override')
 const MongoClient = require('mongodb').MongoClient;
 const url = 'mongodb://localhost:27017/sibarkasid';
 const retrieveProducts = require('./retrieve-product.js');
+const retrieveSaved = require('./retrieve-saved.js');
 
 
 const initializePassport = require('./passport-config');
@@ -68,7 +69,7 @@ app.get('/products', async (req, res) => {
 
 app.get('/user', checkAuthenticated, (req, res) => {
   res.render('pages/user', {
-     name: req.user.name,
+     name: req.user.username,
      email: req.user.email,
      fullName: req.user.fullName,
      phone: req.user.phone,
@@ -76,9 +77,27 @@ app.get('/user', checkAuthenticated, (req, res) => {
     });
 });
 
-app.get('/user/edit', checkAuthenticated, (req, res) => {
-  res.render('user/edit.ejs');
-})
+app.put('/user', checkAuthenticated, (req, res) => {
+  const userId = req.user.id;
+  const { fullName, email, phone, address } = req.body;
+
+  // Lakukan operasi update pada database MongoDB
+  // Pastikan Anda memiliki koneksi database MongoDB yang valid
+  // dan collection users sudah tersedia
+  db.collection('users').updateOne(
+    { _id: ObjectId(userId) },
+    { $set: { fullName, email, phone, address } },
+    (err, result) => {
+      if (err) {
+        console.error(err);
+        res.status(500).send({ message: 'Terjadi kesalahan pada server' });
+      } else {
+        res.status(200).send({ message: 'Data berhasil diupdate' });
+      }
+    }
+  );
+});
+
 
 app.get('/login', checkNotAuthenticated, (req, res) => {
   res.render('user/login.ejs');
@@ -132,9 +151,11 @@ app.get('/home', (req, res) => {
   res.render('pages/home');
 })
 
-app.get('/saved', checkAuthenticated, (req, res) => {
-  res.render('pages/saved');
-})
+// route untuk menampilkan halaman saved product
+app.get('/saved', function(req, res) {
+  res.render('pages/saved')
+});
+
 
 app.get('/user/upload', checkAuthenticated, (req, res) => {
   res.render('user/upload');

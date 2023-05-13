@@ -32,7 +32,7 @@
                             </div>
                         </div>
                         <div>
-                            <button onclick="window.location.href='http://localhost:3000/user/upload'">Upload barang</button>
+                            <button onclick="window.location.href=`http://localhost:3000/user/upload`">Upload barang</button>
                         </div>
                     </div>
                 </div>
@@ -58,7 +58,7 @@
                             <input class="user-info" type="text" id="address" name="address" value="<%= address %>" disabled>
                         </div>
                         <div>
-                            <button id="edit-button" onclick="window.location.href='http://localhost:3000/user/edit'">Edit</button>
+                            <button id="edit-button">Edit</button>
                         </div>
                     </div>
                     <div class="user-info-products">
@@ -86,6 +86,6 @@
 
 
 <%- include('../layouts/footer') %>
-<script src="script/editUser.js"></script>
+<script src="script/edit-user.js"></script>
 </body>
 </html>

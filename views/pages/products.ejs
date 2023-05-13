@@ -20,26 +20,29 @@
 
             <!-- Baris Produk Start -->
             <% if (products && products.length) { %>
-            <div class="row-product">
-                <% for(let i = 0; i < products.length; i++) { %>
-                    <div class="product-items">
-                        <img src="https://i.pinimg.com/originals/1d/79/4a/1d794ad31ef268a455f36a2a2a1d8e49.jpg" alt="">
-                        <div class="product-info">
-                            <div>
-                                <p><%= products[i].nama_barang %></p>
-                                <p><%= products[i].deskripsi_barang %></p>
-                            </div>
-                            <div>
-                                <p>Rp<%= products[i].harga_barang.toLocaleString('id-ID') %>,-</p>
+                <div class="row-product">
+                    <% for(let i = 0; i < products.length; i++) { %>
+                        <div class="product-items">
+                            <img src="<%= products[i].img_barang %>" alt="">
+                            <div class="product-info">
+                                <div>
+                                    <p><%= products[i].nama_barang %></p>
+                                    <p><%= products[i].deskripsi_barang %></p>
+                                </div>
+                                <div>
+                                    <p>Rp<%= products[i].harga_barang.toLocaleString('id-ID') %>,-</p>
+                                </div>
                             </div>
                         </div>
+                    <% } %>
+                </div>
+                <% } else { %>
+                    <div class="div-no-product">
+                        <img class="img-no-product" src="img/no-product.png" alt="">
+                        <p class="caption-no-product">Maaf, barang yang kamu cari ga ada :(</p>
                     </div>
                 <% } %>
-            </div>
-            <% } else { %>
-                <h4 class="no-product">Produk tidak ditemukan</h4>
-            <% } %>
-            <!-- Baris Produk End -->
+                <!-- Baris Produk End -->
 
         </div>
     </section>
