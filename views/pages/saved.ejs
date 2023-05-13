@@ -5,31 +5,48 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Saved</title>
-    <link rel="stylesheet" href="styles/navbar.css">
-    <link rel="stylesheet" href="styles/saved.css">
-    <link rel="stylesheet" href="styles/footer.css">
+    <link rel="stylesheet" href="../styles/navbar.css">
+    <link rel="stylesheet" href="../styles/saved.css">
+    <link rel="stylesheet" href="../styles/footer.css">
 </head>
 <body>
 
 <%- include('../layouts/navbar') %>
 
-
+    
     <section class="saved-section">
         <div class="div-saved-section">
+
+            <% if (products && products.length) { %>
             <div class="row-saved">
-                <div class="saved-items">
-                    <img src="" alt="">
-                    <div class="saved-info">
-                        <div>
-                            <p></p>
-                            <p></p>
-                        </div>
-                        <div>
-                            <p></p>
+                <% for(let i = 0; i < products.length; i++) {
+                %>
+                    <div class="saved-items">
+                        <img src="<%= products[i].img_barang %>" alt="">
+                        <div class="saved-info">
+                            <div>
+                                <p>
+                                    <%= products[i].nama_barang %>
+                                </p>
+                                <p>
+                                    <%= products[i].deskripsi_barang %>
+                                </p>
+                            </div>
+                            <div>
+                                <p>Rp<%= products[i].harga_barang.toLocaleString('id-ID') %>,-</p>
+                            </div>
                         </div>
                     </div>
-                </div>
+                <% } %>
             </div>
+            <% } else { %>
+                <div class="div-no-product">
+                        <img class="img-no-product" src="img/no-product.png" alt="">
+                        <p class="caption-no-product">Maaf, barang yang kamu cari ga ada :(</p>
+                    </div>
+            <% } %>
+
+            
         </div>
     </section>
 

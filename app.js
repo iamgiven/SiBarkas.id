@@ -16,7 +16,7 @@ const methodOverride = require('method-override')
 const MongoClient = require('mongodb').MongoClient;
 const url = 'mongodb://localhost:27017/sibarkasid';
 const retrieveProducts = require('./retrieve-product.js');
-const retrieveSaved = require('./retrieve-saved.js');
+const retrieveProductsByUsername = require('./retrieve-saved.js');
 
 
 const initializePassport = require('./passport-config');
@@ -146,15 +146,34 @@ app.get('/logout', (req, res) => {
 });
 
 
-
 app.get('/home', (req, res) => {
   res.render('pages/home');
-})
+});
+
+
+app.get('/saved', (req, res) => {
+  if (req.isAuthenticated()) {
+    res.redirect('/saved/' + req.user.username);
+  }
+  res.redirect('/login')
+});
+
 
 // route untuk menampilkan halaman saved product
-app.get('/saved', function(req, res) {
-  res.render('pages/saved')
+app.get('/saved/:username', async function(req, res) {
+  try {
+    const products = await retrieveProductsByUsername(req.params.username);
+    if (products.length > 0) {
+      res.render('pages/saved', { products: products });
+    } else {
+      res.send('No saved products found');
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error retrieving saved products');
+  }
 });
+
 
 
 app.get('/user/upload', checkAuthenticated, (req, res) => {
