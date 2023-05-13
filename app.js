@@ -81,9 +81,6 @@ app.put('/user', checkAuthenticated, (req, res) => {
   const userId = req.user.id;
   const { fullName, email, phone, address } = req.body;
 
-  // Lakukan operasi update pada database MongoDB
-  // Pastikan Anda memiliki koneksi database MongoDB yang valid
-  // dan collection users sudah tersedia
   db.collection('users').updateOne(
     { _id: ObjectId(userId) },
     { $set: { fullName, email, phone, address } },
@@ -160,7 +157,7 @@ app.get('/saved', (req, res) => {
 
 
 // route untuk menampilkan halaman saved product
-app.get('/saved/:username', checkAuthenticated, async function(req, res) {
+app.get('/saved/:username', checkAuthenticated, savedAuthenticated, async function(req, res) {
   try {
     const products = await retrieveProductsByUsername(req.params.username);
     res.render('pages/saved', { products: products });
@@ -191,6 +188,17 @@ function checkNotAuthenticated(req, res, next) {
   next();
 }
 
+function savedAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    if (req.params.username === req.user.username) {
+      return next();
+    } else {
+      res.status(403).send('Forbidden');
+    }
+  } else {
+    res.redirect('/login');
+  }
+}
 
 
 

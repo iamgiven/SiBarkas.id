@@ -70,13 +70,14 @@
 }
 
 .user-info-profile > div:nth-child(1) > div:nth-child(2) {
-    margin: 15px 0;
+    margin: 15px 5px 15px 0;
     display: flex;
     justify-content: center;
 }
 
 .user-info-profile > div:nth-child(1) > div:nth-child(2) p {
-    color: #000;
+    font-family: 'lato', sans-serif;
+    color: #444;
 }
 
 .user-info-profile > div:nth-child(2) {
@@ -106,6 +107,7 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    gap: 25px;
 }
 
 .user-info-data {
@@ -205,7 +207,7 @@
 .sold-products-list {
     width: 725px;
     height: 325px;
-    margin: 15px 0 0 0;
+    margin: 0px 0 0 0;
     overflow-y: auto;
 }
 
@@ -225,7 +227,7 @@
 
 .sold-info-products {
     width: 700px;
-    height: 65px;
+    height: 60px;
     margin: 15px 0;
     background: #eee;
 }
