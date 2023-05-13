@@ -125,7 +125,7 @@ app.post('/signup', checkNotAuthenticated, async (req, res) => {
     const db = client.db('sibarkasid');
 
     await db.collection('users').insertOne({
-      name: req.body.name,
+      username: req.body.name,
       email: req.body.email,
       password: hashedPassword,
     });
@@ -160,14 +160,10 @@ app.get('/saved', (req, res) => {
 
 
 // route untuk menampilkan halaman saved product
-app.get('/saved/:username', async function(req, res) {
+app.get('/saved/:username', checkAuthenticated, async function(req, res) {
   try {
     const products = await retrieveProductsByUsername(req.params.username);
-    if (products.length > 0) {
-      res.render('pages/saved', { products: products });
-    } else {
-      res.send('No saved products found');
-    }
+    res.render('pages/saved', { products: products });
   } catch (error) {
     console.error(error);
     res.status(500).send('Error retrieving saved products');
