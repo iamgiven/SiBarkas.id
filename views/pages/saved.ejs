@@ -15,12 +15,17 @@
 
     
     <section class="saved-section">
+        
         <div class="div-saved-section">
+            <div class="title-saved-section">
+                <p>Halaman Tersimpan</p>
+            </div>
 
             <% if (products && products.length) { %>
             <div class="row-saved">
                 <% for(let i = 0; i < products.length; i++) {
                 %>
+                <a href="<%= products[i].link_barang %>">
                     <div class="saved-items">
                         <img src="<%= products[i].img_barang %>" alt="">
                         <div class="saved-info">
@@ -37,6 +42,7 @@
                             </div>
                         </div>
                     </div>
+                </a>
                 <% } %>
             </div>
             <% } else { %>

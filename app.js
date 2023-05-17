@@ -17,6 +17,7 @@ const MongoClient = require('mongodb').MongoClient;
 const url = 'mongodb://localhost:27017/sibarkasid';
 const retrieveProducts = require('./retrieve-product.js');
 const retrieveProductsByUsername = require('./retrieve-saved.js');
+const { retrieveProductById } = require('./detail-product.js');
 
 
 const initializePassport = require('./passport-config');
@@ -66,6 +67,34 @@ app.get('/products', async (req, res) => {
     res.status(500).send('Internal server error');
   }
 });
+
+
+app.get('/products/:productId', async (req, res) => {
+  try {
+    const { ObjectId } = require('mongodb');
+    const productId = req.params.productId;
+
+    if (!ObjectId.isValid(productId)) {
+      return res.status(400).json({ message: 'Invalid product ID' });
+    }
+
+    const product = await retrieveProductById(productId);
+
+    if (!product) {
+      return res.status(404).json({ message: 'Product not found' });
+    }
+
+    res.render('pages/product-page', {
+      product: product,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: error.message });
+  }
+});
+
+
+
 
 app.get('/user', checkAuthenticated, (req, res) => {
   res.render('pages/user', {
@@ -150,10 +179,47 @@ app.get('/home', (req, res) => {
 
 app.get('/saved', (req, res) => {
   if (req.isAuthenticated()) {
-    res.redirect('/saved/' + req.user.username);
+    return res.redirect('/saved/' + req.user.username);
   }
-  res.redirect('/login')
+  return res.redirect('/login')
 });
+
+
+app.post('/products/:productId', async (req, res) => {
+  try {
+    const { ObjectId } = require('mongodb');
+    const productId = req.params.productId;
+    const username = req.user.username; // Ambil <user_id> dari objek pengguna (req.user)
+
+    const client = await MongoClient.connect(url, { useUnifiedTopology: true });
+    const db = client.db('sibarkasid');
+
+    const user = await db.collection('users').findOne({ username: username });
+
+    if (!user) {
+      throw new Error('User not found');
+    }
+
+    const product = await db.collection('products').findOne({ _id: new ObjectId(productId) });
+    if (!product) {
+      throw new Error('Product not found');
+    }
+
+    await db.collection('users').updateOne(
+      { username: username },
+      { $push: { saved: { productId: new ObjectID(product._id) } } }
+    );
+    
+
+    client.close();
+
+    res.redirect('/saved');
+  } catch (error) {
+    console.error(error);
+    res.redirect('/products');
+  }
+});
+
 
 
 // route untuk menampilkan halaman saved product
@@ -168,9 +234,13 @@ app.get('/saved/:username', checkAuthenticated, savedAuthenticated, async functi
 });
 
 
-
 app.get('/user/upload', checkAuthenticated, (req, res) => {
   res.render('user/upload');
+})
+
+
+app.get('/try', (req, res) => {
+  res.render('pages/product-page');
 })
 
 

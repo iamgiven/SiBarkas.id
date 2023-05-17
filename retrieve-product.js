@@ -1,7 +1,4 @@
-// Import paket MongoDB
 const MongoClient = require('mongodb').MongoClient;
-
-// Konfigurasi koneksi ke basis data MongoDB
 const url = 'mongodb://localhost:27017';
 
 async function retrieveProducts(keyword = '') {

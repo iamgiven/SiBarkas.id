@@ -20,26 +20,31 @@
 
             <!-- Baris Produk Start -->
             <% if (products && products.length) { %>
-                <div class="row-product">
-                    <% for(let i = 0; i < products.length; i++) { %>
-                        <div class="product-items">
-                            <img src="<%= products[i].img_barang %>" alt="">
-                            <div class="product-info">
-                                <div>
-                                    <p>
-                                        <%= products[i].nama_barang %>
-                                    </p>
-                                    <p>
-                                        <%= products[i].deskripsi_barang %>
-                                    </p>
+                    <div class="row-product">
+                        <% for(let i = 0; i < products.length; i++) { %>
+
+                            <a href="<%= products[i].link_barang %>">
+                                <div class="product-items">
+                                    <img src="<%= products[i].img_barang %>" alt="">
+                                    <div class="product-info">
+                                        <div>
+                                            <p>
+                                                <%= products[i].nama_barang %>
+                                            </p>
+                                            <p>
+                                                <%= products[i].deskripsi_barang %>
+                                            </p>
+                                        </div>
+                                        <div>
+                                            <p>Rp<%= products[i].harga_barang.toLocaleString('id-ID') %>,-</p>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div>
-                                    <p>Rp<%= products[i].harga_barang.toLocaleString('id-ID') %>,-</p>
-                                </div>
-                            </div>
-                        </div>
-                    <% } %>
-                </div>
+                            </a>
+                            
+                        <% } %>
+                    </div>
+                
                 <% } else { %>
                     <div class="div-no-product">
                         <img class="img-no-product" src="img/no-product.png" alt="">
