@@ -1,7 +1,5 @@
-// Import paket MongoDB
 const { MongoClient, ObjectId } = require('mongodb');
 
-// ...
 const url = 'mongodb://localhost:27017';
 
 async function retrieveProductById(productId) {

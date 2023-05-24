@@ -25,6 +25,7 @@
 
                             <a href="<%= products[i].link_barang %>">
                                 <div class="product-items">
+                                    <div></div>
                                     <img src="<%= products[i].img_barang %>" alt="">
                                     <div class="product-info">
                                         <div>
@@ -45,13 +46,13 @@
                         <% } %>
                     </div>
                 
-                <% } else { %>
-                    <div class="div-no-product">
-                        <img class="img-no-product" src="img/no-product.png" alt="">
-                        <p class="caption-no-product">Maaf, barang yang kamu cari ga ada :(</p>
-                    </div>
-                <% } %>
-                <!-- Baris Produk End -->
+            <% } else { %>
+                <div class="div-no-product">
+                    <img class="img-no-product" src="img/no-product.png" alt="">
+                    <p class="caption-no-product">Maaf, barang yang kamu cari ga ada</p>
+                </div>
+            <% } %>
+            <!-- Baris Produk End -->
 
         </div>
     </section>
