@@ -3,7 +3,6 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 const express = require('express')
-const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const ejs = require('ejs')
 const app = express()
@@ -17,6 +16,7 @@ const MongoClient = require('mongodb').MongoClient;
 const url = 'mongodb://localhost:27017/sibarkasid';
 const retrieveProducts = require('./retrieve-product.js');
 const retrieveProductsByUsername = require('./retrieve-saved.js');
+const retrieveUploadByUsername = require('./retrieve-upload.js');
 const { retrieveProductById } = require('./detail-product.js');
 
 
@@ -92,14 +92,22 @@ app.get('/products/:productId', async (req, res) => {
 
 
 
-app.get('/user', checkAuthenticated, (req, res) => {
-  res.render('pages/user', {
-     name: req.user.username,
-     email: req.user.email,
-     fullName: req.user.fullName,
-     phone: req.user.phone,
-     address: req.user.address
-    });
+app.get('/user', checkAuthenticated, async (req, res) => {
+  try {
+    const products = await retrieveUploadByUsername(req.params.username);
+    res.render('pages/user', {
+      name: req.user.username,
+      email: req.user.email,
+      fullName: req.user.fullName,
+      phone: req.user.phone,
+      address: req.user.address,
+      products: products
+     });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error retrieving uploaded products');
+  }
+  
 });
 
 

@@ -116,7 +116,7 @@ input {
     cursor: pointer;
 }
 
-.whatsapp-icon > img{
+.whatsapp-icon > a > img{
     height: 30px;
     pointer-events: none;
 }
@@ -151,6 +151,7 @@ input {
     height: 650px;
     background: #fcfcfc;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    border: solid 0.5px #ddd;
 }
 
 .title-comment-section {
