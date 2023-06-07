@@ -94,7 +94,7 @@ app.get('/products/:productId', async (req, res) => {
 
 app.get('/user', checkAuthenticated, async (req, res) => {
   try {
-    const products = await retrieveUploadByUsername(req.params.username);
+    const products = await retrieveUploadByUsername(req.user.username);
     res.render('pages/user', {
       name: req.user.username,
       email: req.user.email,

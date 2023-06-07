@@ -9,11 +9,14 @@ async function retrieveUploadByUsername(username) {
     const user = await db.collection("users").findOne({ username: username });
     const uploadedProducts = user.uploaded || [];
 
-    const productIds = uploadedProducts.map(function(product) {
-      return product.productId;
-    });
-      
-    const products = await db.collection("products").find({ _id: { $in: productIds }}).toArray();
+    let products = [];
+    if (uploadedProducts.length > 0) {
+      const productIds = uploadedProducts.map(function(product) {
+        return product.productId;
+      });
+    
+      products = await db.collection("products").find({ _id: { $in: productIds }}).toArray();
+    }
 
     client.close();
     return products;
